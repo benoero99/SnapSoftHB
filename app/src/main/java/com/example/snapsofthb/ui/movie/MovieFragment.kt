@@ -37,8 +37,6 @@ class MovieFragment : RainbowCakeFragment<MovieViewState, MovieViewModel>(), Mov
         adapter = MovieAdapter(this)
         binding.moviesList.adapter = adapter
 
-        //viewModel.getPopularMovies()
-
         binding.movieSearcherTIET.setOnEditorActionListener { tv, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 binding.movieSearcherTIET.clearFocus()
@@ -67,7 +65,6 @@ class MovieFragment : RainbowCakeFragment<MovieViewState, MovieViewModel>(), Mov
             is Ready -> {
                 adapter.update(viewState.moviesResult)
                 binding.loadingView.smoothToHide()
-
             }
             is Error -> {
                 Toast.makeText(requireContext(), viewState.e.message, Toast.LENGTH_SHORT).show()

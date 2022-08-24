@@ -1,7 +1,6 @@
 package com.example.snapsofthb.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -37,9 +36,8 @@ class MovieAdapter(private val listener: ElementClickListener) : RecyclerView.Ad
         fun onElementClicked(movieId: Int)
     }
 
-    inner class ViewHolder(private val itemBinding: MovieBinding) : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
+    inner class ViewHolder(private val itemBinding: MovieBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(movie: MovieUIModel) {
-            itemView.setOnClickListener(this)
             itemBinding.movieTitleTV.text = movie.title
             itemBinding.movieReleaseYearTV.text = movie.releaseYear
             itemBinding.movieBudgetTV.text = movie.budget
@@ -48,9 +46,6 @@ class MovieAdapter(private val listener: ElementClickListener) : RecyclerView.Ad
             itemView.setOnClickListener {
                 listener.onElementClicked(movie.id)
             }
-        }
-
-        override fun onClick(p0: View?) {
         }
 
     }

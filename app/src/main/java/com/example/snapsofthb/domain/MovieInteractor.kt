@@ -1,6 +1,5 @@
 package com.example.snapsofthb.domain
 
-import androidx.core.net.toUri
 import com.example.snapsofthb.network.apimodel.MoviesResult
 import com.example.snapsofthb.network.NetworkDataSource
 import com.example.snapsofthb.network.apimodel.DetailResult

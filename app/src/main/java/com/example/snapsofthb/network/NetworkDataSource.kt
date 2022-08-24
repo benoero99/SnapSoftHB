@@ -1,6 +1,5 @@
 package com.example.snapsofthb.network
 
-import android.net.Uri
 import com.example.snapsofthb.network.apimodel.DetailResult
 import com.example.snapsofthb.network.apimodel.MoviesResult
 import javax.inject.Inject

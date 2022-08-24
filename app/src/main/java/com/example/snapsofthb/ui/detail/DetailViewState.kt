@@ -1,8 +1,6 @@
 package com.example.snapsofthb.ui.detail
 
-import com.example.snapsofthb.ui.movie.MovieViewState
 import com.example.snapsofthb.ui.uimodel.DetailUIModel
-import com.example.snapsofthb.ui.uimodel.MovieUIModel
 
 sealed class DetailViewState
 
