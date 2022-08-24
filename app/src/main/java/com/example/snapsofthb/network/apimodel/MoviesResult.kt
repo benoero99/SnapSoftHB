@@ -15,7 +15,7 @@ data class MoviesResult(
 data class Movie(
     val id: Int,
     @SerializedName("poster_path")
-    val posterImagePath: String,
+    val posterImagePath: String?,
     val adult: Boolean,
     val overview: String,
     @SerializedName("release_date")

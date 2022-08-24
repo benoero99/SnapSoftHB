@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.extensions.exhaustive
 import co.zsmb.rainbowcake.hilt.getViewModelFromFactory
 import com.example.snapsofthb.MovieAdapter
-import com.example.snapsofthb.MovieUIModel
+import com.example.snapsofthb.ui.uimodel.MovieUIModel
 import com.example.snapsofthb.databinding.FragmentMovieBinding
 import com.example.snapsofthb.util.KeyboardUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +25,7 @@ class MovieFragment : RainbowCakeFragment<MovieViewState, MovieViewModel>(), Mov
 
     override fun provideViewModel() = getViewModelFromFactory()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMovieBinding.inflate(inflater,container, false)
         return binding.root
     }
@@ -39,11 +37,15 @@ class MovieFragment : RainbowCakeFragment<MovieViewState, MovieViewModel>(), Mov
         binding.moviesList.adapter = adapter
 
 
-        binding.movieSearcherTIET.setOnEditorActionListener { _, actionId, _ ->
+        binding.movieSearcherTIET.setOnEditorActionListener { tv, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 binding.movieSearcherTIET.clearFocus()
                 KeyboardUtils.hideKeyboard(activity)
-                viewModel.load()
+                if(tv.text.toString().isEmpty()) {
+                    viewModel.getPopularMovies()
+                } else {
+                    viewModel.searchMovie(tv.text.toString())
+                }
                 true
             } else false
         }
@@ -58,17 +60,15 @@ class MovieFragment : RainbowCakeFragment<MovieViewState, MovieViewModel>(), Mov
 
     override fun render(viewState: MovieViewState) {
         when(viewState) {
-            Loading -> Toast.makeText(requireContext(), "View is loading", Toast.LENGTH_SHORT).show()
+            Loading ->  {
+                Toast.makeText(requireContext(), "View is loading", Toast.LENGTH_SHORT).show()
+                adapter.clear()
+            }
             is Ready -> {
-                val list = mutableListOf<MovieUIModel>()
-                list.add(MovieUIModel("1"))
-                list.add(MovieUIModel("2"))
-                list.add(MovieUIModel("3"))
-                list.add(MovieUIModel("4"))
-                list.add(MovieUIModel("5"))
-                list.add(MovieUIModel("6"))
-                list.add(MovieUIModel("7"))
-                adapter.update(list)
+                adapter.update(viewState.moviesResult)
+            }
+            is Error -> {
+                Toast.makeText(requireContext(), viewState.e.message, Toast.LENGTH_SHORT).show()
             }
         }.exhaustive
     }

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.snapsofthb.databinding.MovieBinding
+import com.example.snapsofthb.ui.uimodel.MovieUIModel
 
 class MovieAdapter(private val listener: ElementClickListener) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     private var data: MutableList<MovieUIModel> = ArrayList()
@@ -23,8 +24,12 @@ class MovieAdapter(private val listener: ElementClickListener) : RecyclerView.Ad
     override fun getItemCount() = data.size
 
     fun update(elements: MutableList<MovieUIModel>) {
-        data.clear()
         data.addAll(elements)
+        notifyDataSetChanged()
+    }
+
+    fun clear() {
+        data.clear()
         notifyDataSetChanged()
     }
 
@@ -34,11 +39,11 @@ class MovieAdapter(private val listener: ElementClickListener) : RecyclerView.Ad
 
     inner class ViewHolder(private val itemBinding: MovieBinding) : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
         fun bind(movie: MovieUIModel) {
-            itemBinding.movieTitleTV.text = "teszt"
-            itemBinding.movieReleaseYearTV.text = "$adapterPosition"
-            itemBinding.movieBudgetTV.text = "teszt"
-            itemBinding.movieRatingTV.text = "Rating: ${movie.somedata}"
-            Glide.with(this.itemView.context).load("https://image.tmdb.org/t/p/w500/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg").into(itemBinding.moviePosterIV)
+            itemBinding.movieTitleTV.text = movie.title
+            itemBinding.movieReleaseYearTV.text = movie.releaseYear
+            itemBinding.movieBudgetTV.text = movie.budget
+            itemBinding.movieRatingTV.text = "Rating: ${movie.rating}"
+            Glide.with(this.itemView.context).load(movie.posterUri).into(itemBinding.moviePosterIV)
         }
 
         override fun onClick(p0: View?) {
