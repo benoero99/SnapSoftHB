@@ -1,11 +1,21 @@
 package com.example.snapsofthb
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import co.zsmb.rainbowcake.navigation.SimpleNavActivity
+import dagger.hilt.android.AndroidEntryPoint
+import com.example.snapsofthb.ui.MovieFragment
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : SimpleNavActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(co.zsmb.rainbowcake.R.layout.activity_main)
+
+        if(savedInstanceState == null) {
+            navigator.add(MovieFragment())
+        }
+
+
     }
 }
