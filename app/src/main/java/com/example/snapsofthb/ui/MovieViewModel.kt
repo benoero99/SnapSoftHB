@@ -2,6 +2,7 @@ package com.example.snapsofthb.ui
 
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -10,7 +11,8 @@ class MovieViewModel @Inject constructor(private val moviePresenter: MoviePresen
 ) {
 
     fun load() = execute {
-        viewState = Ready
+        val movies = moviePresenter.getPopularMovies()
+        viewState = Ready(movies)
     }
 
 }

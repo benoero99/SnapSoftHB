@@ -47,21 +47,30 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
-    // Glide for pictures
+    // Glide - Pictures
     def glide_version = '4.13.2'
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
-    // RainbowCake by Marton Braun
+    // RainbowCake by Marton Braun - Architecture
     def rainbow_cake_version = '1.6.0'
     implementation "co.zsmb:rainbow-cake-core:$rainbow_cake_version"
     implementation "co.zsmb:rainbow-cake-hilt:$rainbow_cake_version"
     implementation "co.zsmb:rainbow-cake-navigation:$rainbow_cake_version"
 
-    // Hilt
+    // Hilt - DI
     def dagger_version = '2.38.1'
     implementation "com.google.dagger:hilt-android:$dagger_version"
     kapt "com.google.dagger:hilt-android-compiler:$dagger_version"
+
+    // Retrofit - HTTP client
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    def okhttp_version = '4.6.0'
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 }
 
 kapt {
