@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/moviePosterIV"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:scaleType="fitStart"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/movieTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title here"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/moviePosterIV"
+        app:layout_constraintTop_toTopOf="@id/moviePosterIV"/>
+
+    <TextView
+        android:id="@+id/movieReleaseYearTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2023"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/moviePosterIV"
+        app:layout_constraintTop_toBottomOf="@id/movieTitleTV"/>
+
+    <TextView
+        android:id="@+id/movieBudgetTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="some million dollars$$$"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/moviePosterIV"
+        app:layout_constraintTop_toBottomOf="@id/movieReleaseYearTV"/>
+
+    <TextView
+        android:id="@+id/movieRatingTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rating: 9.5"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/moviePosterIV"
+        app:layout_constraintTop_toBottomOf="@+id/movieBudgetTV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
