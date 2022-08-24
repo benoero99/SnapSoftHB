@@ -23,11 +23,12 @@ class MoviePresenter @Inject constructor(
             val details = movieInteractor.getMovieDetail(movie.id)
             movieList.add(
                 MovieUIModel(
+                    id = movie.id,
                     title = movie.title,
                     releaseYear = getYear(movie.releaseDate),
                     budget = "Budget: " + getBudget(details.budget),
                     rating = movie.rating.toString(),
-                    posterUri = PosterUri(movie.posterImagePath)
+                    posterUri = posterUri(movie.posterImagePath)
                 )
             )
         }
@@ -50,13 +51,11 @@ class MoviePresenter @Inject constructor(
         }
     }
 
-    private fun PosterUri(uri: String?): String {
+    private fun posterUri(uri: String?): String {
         return if(uri == null) {
             "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg"
         } else {
             "https://image.tmdb.org/t/p/w500/$uri"
         }
-
-
     }
 }

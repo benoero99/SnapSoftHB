@@ -4,6 +4,8 @@ import com.example.snapsofthb.ui.uimodel.MovieUIModel
 
 sealed class MovieViewState
 
+object Default : MovieViewState()
+
 object Loading : MovieViewState()
 
 data class Error(

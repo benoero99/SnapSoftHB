@@ -34,7 +34,7 @@ class MovieAdapter(private val listener: ElementClickListener) : RecyclerView.Ad
     }
 
     interface ElementClickListener {
-        fun onElementClicked(position: Int, holder: ViewHolder)
+        fun onElementClicked(movieId: Int)
     }
 
     inner class ViewHolder(private val itemBinding: MovieBinding) : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
@@ -45,10 +45,12 @@ class MovieAdapter(private val listener: ElementClickListener) : RecyclerView.Ad
             itemBinding.movieBudgetTV.text = movie.budget
             itemBinding.movieRatingTV.text = "Rating: ${movie.rating}"
             Glide.with(this.itemView.context).load(movie.posterUri).into(itemBinding.moviePosterIV)
+            itemView.setOnClickListener {
+                listener.onElementClicked(movie.id)
+            }
         }
 
         override fun onClick(p0: View?) {
-            listener.onElementClicked(adapterPosition, this)
         }
 
     }

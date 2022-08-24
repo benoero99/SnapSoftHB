@@ -7,25 +7,30 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(private val moviePresenter: MoviePresenter): RainbowCakeViewModel<MovieViewState>(
-    Loading
+    Default
 ) {
 
     fun searchMovie(query: String) = execute {
         viewState = Loading
         val movies: MutableList<MovieUIModel>
-        try {
+        viewState = try {
             movies = moviePresenter.searchMovie(query)
-            viewState = Ready(movies)
+            Ready(movies)
         } catch (e: Exception) {
-            viewState = Error(e)
+            Error(e)
         }
 
     }
 
     fun getPopularMovies() = execute {
         viewState = Loading
-        val movies = moviePresenter.getPopularMovies()
-        viewState = Ready(movies)
+        val movies: MutableList<MovieUIModel>
+        try {
+            movies = moviePresenter.getPopularMovies()
+            viewState = Ready(movies)
+        } catch (e: Exception) {
+            viewState = Error(e)
+        }
     }
 
 }

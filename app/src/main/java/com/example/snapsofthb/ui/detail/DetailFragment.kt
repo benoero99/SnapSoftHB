@@ -1,6 +1,7 @@
 package com.example.snapsofthb.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import com.example.snapsofthb.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailFragment : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
+class DetailFragment constructor(private val movieId: Int) : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
@@ -23,6 +24,11 @@ class DetailFragment : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getDetails(movieId)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -31,13 +37,14 @@ class DetailFragment : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
     override fun render(viewState: DetailViewState) {
         when(viewState) {
             is Error -> {
-                TODO()
+                Toast.makeText(requireContext(), viewState.e.message, Toast.LENGTH_SHORT).show()
             }
             Loading -> {
-                Toast.makeText(requireContext(), "View is loading", Toast.LENGTH_SHORT).show()
+                binding.loadingDetailView.show()
             }
             is Ready -> {
-                TODO()
+                binding.loadingDetailView.hide()
+                Log.d("asd",viewState.details.toString())
             }
         }.exhaustive
     }

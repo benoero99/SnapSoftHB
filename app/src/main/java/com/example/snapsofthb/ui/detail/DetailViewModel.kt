@@ -7,7 +7,13 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(private val detailPresenter: DetailPresenter) : RainbowCakeViewModel<DetailViewState>(Loading) {
 
-    fun load() = execute {
+    fun getDetails(movieId: Int) = execute {
+        viewState = try {
+            val details = detailPresenter.getDetails(movieId)
+            Ready(details)
+        } catch (e: Exception) {
+            Error(e)
+        }
 
     }
 }

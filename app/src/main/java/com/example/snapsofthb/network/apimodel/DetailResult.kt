@@ -19,7 +19,8 @@ data class DetailResult(
     @SerializedName("vote_average")
     var rating: Number,
     @SerializedName("vote_count")
-    var voteCount: Int
+    var voteCount: Int,
+    var runtime: Int?
 )
 
 data class Genre(

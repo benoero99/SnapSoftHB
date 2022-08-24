@@ -37,6 +37,7 @@ class MovieFragment : RainbowCakeFragment<MovieViewState, MovieViewModel>(), Mov
         adapter = MovieAdapter(this)
         binding.moviesList.adapter = adapter
 
+        //viewModel.getPopularMovies()
 
         binding.movieSearcherTIET.setOnEditorActionListener { tv, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -60,20 +61,25 @@ class MovieFragment : RainbowCakeFragment<MovieViewState, MovieViewModel>(), Mov
     override fun render(viewState: MovieViewState) {
         when(viewState) {
             Loading ->  {
-                Toast.makeText(requireContext(), "View is loading", Toast.LENGTH_SHORT).show()
+                binding.loadingView.smoothToShow()
                 adapter.clear()
             }
             is Ready -> {
                 adapter.update(viewState.moviesResult)
+                binding.loadingView.smoothToHide()
+
             }
             is Error -> {
                 Toast.makeText(requireContext(), viewState.e.message, Toast.LENGTH_SHORT).show()
             }
+            Default -> {
+
+            }
         }.exhaustive
     }
 
-    override fun onElementClicked(position: Int, holder: MovieAdapter.ViewHolder) {
-        navigator?.add(DetailFragment())
+    override fun onElementClicked(movieId: Int) {
+        navigator?.add(DetailFragment(movieId))
     }
 
 }
