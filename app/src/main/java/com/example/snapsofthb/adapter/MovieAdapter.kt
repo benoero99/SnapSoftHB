@@ -1,4 +1,4 @@
-package com.example.snapsofthb
+package com.example.snapsofthb.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +11,12 @@ import com.example.snapsofthb.ui.uimodel.MovieUIModel
 class MovieAdapter(private val listener: ElementClickListener) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     private var data: MutableList<MovieUIModel> = ArrayList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = MovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: MovieAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = data[position]
         holder.bind(movie)
     }
@@ -39,6 +39,7 @@ class MovieAdapter(private val listener: ElementClickListener) : RecyclerView.Ad
 
     inner class ViewHolder(private val itemBinding: MovieBinding) : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
         fun bind(movie: MovieUIModel) {
+            itemView.setOnClickListener(this)
             itemBinding.movieTitleTV.text = movie.title
             itemBinding.movieReleaseYearTV.text = movie.releaseYear
             itemBinding.movieBudgetTV.text = movie.budget

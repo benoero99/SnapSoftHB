@@ -3,7 +3,7 @@ package com.example.snapsofthb
 import android.os.Bundle
 import co.zsmb.rainbowcake.navigation.SimpleNavActivity
 import dagger.hilt.android.AndroidEntryPoint
-import com.example.snapsofthb.ui.MovieFragment
+import com.example.snapsofthb.ui.movie.MovieFragment
 
 @AndroidEntryPoint
 class MainActivity : SimpleNavActivity() {

@@ -1,4 +1,4 @@
-package com.example.snapsofthb.ui
+package com.example.snapsofthb.ui.movie
 
 import co.zsmb.rainbowcake.withIOContext
 import com.example.snapsofthb.domain.MovieInteractor
@@ -17,20 +17,29 @@ class MoviePresenter @Inject constructor(
         movieInteractor.searchMovies(query).toMovieUIModel()
     }
 
-    private fun MoviesResult.toMovieUIModel(): MutableList<MovieUIModel> {
+    private suspend fun MoviesResult.toMovieUIModel(): MutableList<MovieUIModel> {
         val movieList = mutableListOf<MovieUIModel>()
         for (movie in movies) {
+            val details = movieInteractor.getMovieDetail(movie.id)
             movieList.add(
                 MovieUIModel(
                     title = movie.title,
                     releaseYear = getYear(movie.releaseDate),
-                    budget = "",
+                    budget = "Budget: " + getBudget(details.budget),
                     rating = movie.rating.toString(),
                     posterUri = PosterUri(movie.posterImagePath)
                 )
             )
         }
         return movieList
+    }
+
+    private fun getBudget(budget: Int): String {
+        return if(budget==0) {
+            "Unknown"
+        } else {
+            "$$budget"
+        }
     }
 
     private fun getYear(releaseDate: String): String {

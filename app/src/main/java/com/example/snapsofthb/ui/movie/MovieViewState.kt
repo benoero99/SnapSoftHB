@@ -1,4 +1,4 @@
-package com.example.snapsofthb.ui
+package com.example.snapsofthb.ui.movie
 
 import com.example.snapsofthb.ui.uimodel.MovieUIModel
 

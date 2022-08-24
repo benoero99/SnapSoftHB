@@ -1,4 +1,4 @@
-package com.example.snapsofthb.ui
+package com.example.snapsofthb.ui.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,10 @@ import android.widget.Toast
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.extensions.exhaustive
 import co.zsmb.rainbowcake.hilt.getViewModelFromFactory
-import com.example.snapsofthb.MovieAdapter
-import com.example.snapsofthb.ui.uimodel.MovieUIModel
+import co.zsmb.rainbowcake.navigation.navigator
+import com.example.snapsofthb.adapter.MovieAdapter
 import com.example.snapsofthb.databinding.FragmentMovieBinding
+import com.example.snapsofthb.ui.detail.DetailFragment
 import com.example.snapsofthb.util.KeyboardUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,8 +52,6 @@ class MovieFragment : RainbowCakeFragment<MovieViewState, MovieViewModel>(), Mov
         }
     }
 
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -74,7 +73,7 @@ class MovieFragment : RainbowCakeFragment<MovieViewState, MovieViewModel>(), Mov
     }
 
     override fun onElementClicked(position: Int, holder: MovieAdapter.ViewHolder) {
-        TODO("Not yet implemented")
+        navigator?.add(DetailFragment())
     }
 
 }
