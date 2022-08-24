@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class DetailResult(
     var id: Int,
-    var budget: Int,
+    var budget: Int?,
     var genres: List<Genre>,
     @SerializedName("original_language")
     var originalLanguage: String,

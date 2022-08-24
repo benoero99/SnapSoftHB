@@ -18,7 +18,117 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    
+
+    <ImageView
+        android:id="@+id/detailPosterIV"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/detailTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/detailPosterIV"
+        app:layout_constraintTop_toTopOf="@+id/detailPosterIV" />
+
+    <TextView
+        android:id="@+id/genresDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="4dp"
+        android:textSize="16sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/detailPosterIV"
+        app:layout_constraintTop_toBottomOf="@+id/detailTitleTV" />
+
+    <ImageView
+        android:id="@+id/calendarDetailIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_release_date"
+        app:layout_constraintStart_toEndOf="@+id/detailPosterIV"
+        app:layout_constraintTop_toBottomOf="@+id/genresDetailTV" />
+
+    <TextView
+        android:id="@+id/releaseDateDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/calendarDetailIV"
+        app:layout_constraintStart_toEndOf="@+id/calendarDetailIV"
+        app:layout_constraintTop_toTopOf="@+id/calendarDetailIV" />
+
+    <ImageView
+        android:id="@+id/clockDetailIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_length"
+        app:layout_constraintStart_toEndOf="@+id/detailPosterIV"
+        app:layout_constraintTop_toBottomOf="@+id/calendarDetailIV" />
+
+    <TextView
+        android:id="@+id/lengthDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/clockDetailIV"
+        app:layout_constraintStart_toEndOf="@+id/clockDetailIV"
+        app:layout_constraintTop_toBottomOf="@+id/calendarDetailIV" />
+
+    <TextView
+        android:id="@+id/budgetDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/detailPosterIV"
+        app:layout_constraintTop_toBottomOf="@+id/clockDetailIV" />
+
+    <TextView
+        android:id="@+id/ratingCountDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/detailPosterIV"
+        app:layout_constraintTop_toBottomOf="@+id/budgetDetailTV" />
+
+    <TextView
+        android:id="@+id/ratingDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/detailPosterIV"
+        app:layout_constraintTop_toBottomOf="@+id/ratingCountDetailTV" />
+
+    <TextView
+        android:id="@+id/overviewTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Overview"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailPosterIV" />
+
+    <TextView
+        android:id="@+id/overviewDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/overviewTV" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

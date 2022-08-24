@@ -35,16 +35,16 @@ class MoviePresenter @Inject constructor(
         return movieList
     }
 
-    private fun getBudget(budget: Int): String {
-        return if(budget==0) {
+    private fun getBudget(budget: Int?): String {
+        return if(budget == null ||budget==0) {
             "Unknown"
         } else {
             "$$budget"
         }
     }
 
-    private fun getYear(releaseDate: String): String {
-        return if(releaseDate.isEmpty()) {
+    private fun getYear(releaseDate: String?): String {
+        return if(releaseDate == null || releaseDate.isEmpty()) {
             "Api is trolling me"
         } else {
             releaseDate.substring(0,4)

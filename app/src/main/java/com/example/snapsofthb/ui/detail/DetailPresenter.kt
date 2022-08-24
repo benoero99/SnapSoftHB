@@ -22,7 +22,6 @@ class DetailPresenter @Inject constructor(
             rating = rating.toString(),
             genres = genreConcat(genres),
             budget = getBudget(budget),
-            originalLanguage = originalLanguage,
             overview = overview,
             releaseDate = releaseDate,
             voteCount = voteCount.toString(),
@@ -39,6 +38,9 @@ class DetailPresenter @Inject constructor(
     }
 
     private fun genreConcat(list: List<Genre>): String {
+        if(list.isEmpty()) {
+            return "No genre given"
+        }
         val stringBuilder = StringBuilder()
         list.forEach {
             stringBuilder.append("${it.name}, ")
@@ -47,8 +49,8 @@ class DetailPresenter @Inject constructor(
         return stringBuilder.toString()
     }
 
-    private fun getBudget(budget: Int): String {
-        return if(budget==0) {
+    private fun getBudget(budget: Int?): String {
+        return if(budget == null || budget==0) {
             "Unknown"
         } else {
             "$$budget"
